@@ -42,6 +42,20 @@ def movie(id):
     return jsonify(result[0])
 
 
+@app.route("/create/", methods=["POST"])
+def create():
+    data = request.json
+    Title = data["Title"]
+    ReleaseYear = data["ReleaseYear"]
+    Score = data["Score"]
+
+
+    query =f"INSERT INTO movies(Title, ReleaseYear, Score) VALUE (\'{Title}\', {ReleaseYear}, {Score})"
+
+    cursor.execute(query)
+    connection.commit()
+
+    return jsonify(query)
 
 
 
