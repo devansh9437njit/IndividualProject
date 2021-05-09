@@ -22,6 +22,15 @@ def index():
     return "Robert Deniro Movies API"
 
 
+@app.route('/all')
+def all():
+
+    cursor.execute('SELECT * FROM movies')
+    result = cursor.fetchall()
+    
+    return jsonify(result)
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
